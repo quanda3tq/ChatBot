@@ -30,7 +30,7 @@ while True:
             print("Robot: I'm listening...")
             audio = Robot_ear.listen(mic)
 
-        print("Robot: Processing...")
+        print("Robot: ...")
 
         try:
             you = Robot_ear.recognize_google(audio)
@@ -47,27 +47,21 @@ while True:
     
     if "hello" in your_lower:
         Robot_brain = "Hello DFox"
-    elif "today" in your_lower:
+    elif "today" in your_lower: #Ngày
         today = date.today()
         Robot_brain = today.strftime("%B %d, %Y")
-    elif "time" in your_lower:
+    elif "time" in your_lower:  #Giờ
         now = datetime.now()
         Robot_brain = now.strftime("%H hours %M minutes")
-    elif "bye" in your_lower:
-        Robot_brain = "See you again"
-        print("Robot: " + Robot_brain)
-        Robot_mouth.say(Robot_brain)
-        Robot_mouth.runAndWait()
-        break  # Thoát chương trình
-    elif "who am i" in your_lower:
+    elif "who am i" in your_lower:  # =)
         Robot_brain = "Maybe you are my boss, a good person"
-    elif "introduce yourself" in your_lower:
+    elif "introduce yourself" in your_lower:    #Giới thiệu về bản thân chatbot
         Robot_brain = "I'm a Chatbot made by DF"
-    elif "thank" in your_lower:
-        Robot_brain = "You're welcome"
-    elif "search" in your_lower or "who is" in your_lower or "What about" in your_lower:
+    elif "thank" in your_lower: #Cảm ơn
+        Robot_brain = "You're welcome. Do you have any questions?"
+    elif "search" in your_lower or "who is" in your_lower:
         try:
-            query = your_lower.replace("search", "").replace("who is", "").replace("What about", "").strip()
+            query = your_lower.replace("search", "").replace("who is", "").strip()
             if query:
                 Robot_brain = wikipedia.summary(query, sentences=2)  # Lấy 2 câu đầu tiên từ Wikipedia
             else:
@@ -76,6 +70,13 @@ while True:
             Robot_brain = "There are multiple results. Please be more specific."
         except wikipedia.exceptions.PageError:
             Robot_brain = "I couldn't find anything on Wikipedia about that."
+    elif "bye" in your_lower or "stop" in your_lower or "no" in your_lower:       #Dừng chương chình
+            Robot_brain = "See you again"
+            print("Robot: " + Robot_brain)
+            Robot_mouth.say(Robot_brain)
+            Robot_mouth.runAndWait()
+            break  # Thoát chương trình
+
     else:
         Robot_brain = "I don't understand. Please say again."
 
