@@ -15,7 +15,6 @@ Robot_brain = ""
 
 # Chọn phương thức nhập một lần duy nhất
 while True:
-    Robot_brain = "Choose input method: 1 is Voice, 2 is Keyboard"
     print("\nChoose input method: (1) Voice, (2) Keyboard")
     choice = input("Enter 1 or 2: ").strip()
 
